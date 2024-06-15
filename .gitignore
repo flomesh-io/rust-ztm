@@ -1,1 +1,7 @@
 /target
+
+# vscode
+.vscode
+
+# test
+*.db
