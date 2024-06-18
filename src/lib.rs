@@ -12,8 +12,9 @@ extern "C" {
     pub fn pipy_exit(force: c_int);
 }
 
+/// start ztm agent, like run pipy repo://ztm/agent --database=database --listen=0.0.0.0:listen_port
+/// ! only support to start one agent or one hub at one process
 pub fn start_agent(database: &str, listen_port: u16) {
-    // run pipy repo://ztm/agent --database=database --listen=0.0.0.0:listen_port
     let database = database.to_string();
     tracing::info!("start pipy with port: {}", listen_port);
     let args = vec![
@@ -30,11 +31,32 @@ pub fn start_agent(database: &str, listen_port: u16) {
     thread::sleep(std::time::Duration::from_secs(1)); // wait for pipy to start
 }
 
-pub fn exit_agent() {
+/// start ztm hub, like run pipy repo://ztm/hub --listen=0.0.0.0:listen_port --name=name --ca=ca
+/// ! only support to start one agent or one hub at one process
+/// **didn't test**
+pub fn start_hub(listen_port: u16, name: Vec<String>, ca: &str) {
+    let _ = name; // TODO: ignore name
+    tracing::info!("start pipy with port: {}", listen_port);
+    let args = vec![
+        CString::new("ztm-pipy").unwrap(),
+        CString::new("repo://ztm/hub").unwrap(),
+        CString::new("--args").unwrap(),
+        CString::new(format!("--listen=0.0.0.0:{}", listen_port)).unwrap(),
+        CString::new(format!("--ca={}", ca)).unwrap(),
+    ];
+    let c_args: Vec<*const c_char> = args.iter().map(|arg| arg.as_ptr()).collect();
+    unsafe {
+        pipy_main(c_args.len() as c_int, c_args.as_ptr());
+    }
+}
+
+/// exit ztm agent or hub
+pub fn exit_ztm() {
     unsafe {
         pipy_exit(1);
     }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -52,7 +74,7 @@ mod tests {
         assert!(resp.status().is_success());
         tracing::info!("ztm agent start success");
 
-        exit_agent();
+        exit_ztm();
         let resp = reqwest::get(format!("http://127.0.0.1:{}/api/version", port))
             .await
             .unwrap();
@@ -82,7 +104,7 @@ mod tests {
             .unwrap();
         assert!(resp.status().is_success());
 
-        exit_agent();
+        exit_ztm();
 
         let resp = reqwest::get(format!("http://http://0.0.0.0:{}/api/version", port1))
             .await
