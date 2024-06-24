@@ -3,6 +3,7 @@ use cmake::Config;
 fn main() {
 
     // run npm install in the libs/ztm
+    // TODO expect didn't report error when npm install failed, try npm-rs in the future
     let _ = std::process::Command::new("npm")
         .current_dir("libs/ztm/pipy")
         .arg("install")
@@ -18,12 +19,6 @@ fn main() {
     config.define("PIPY_SHARED", "ON");
     config.define("PIPY_GUI", "OFF");
     config.define("PIPY_CODEBASES", "ON");
-    // let pwd = std::env::current_dir().unwrap().to_str().unwrap().to_string();
-    // config.define(
-    //     "PIPY_CUSTOM_CODEBASES",
-    //     //"agent:libs/ztm/agent,hub:libs/ztm/hub,ca:libs/ztm/ca",
-    //     &format!("ztm/agent:{}/libs/ztm/agent,ztm/hub:{}/libs/ztm/hub,ztm/ca:{}/libs/ztm/ca", pwd, pwd, pwd),
-    // );
     config.define("PIPY_CUSTOM_CODEBASES", "ztm/agent:../agent,ztm/hub:../hub,ztm/ca:../ca");
 
     std::env::set_var("CMAKE_BUILD_PARALLEL_LEVEL", "4");

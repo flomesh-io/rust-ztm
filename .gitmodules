@@ -1,3 +1,3 @@
 [submodule "libs/ztm"]
 	path = libs/ztm
-	url = git@github.com:flomesh-io/ztm.git
+	url = https://github.com/flomesh-io/ztm.git
