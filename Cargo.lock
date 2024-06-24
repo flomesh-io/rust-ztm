@@ -38,7 +38,7 @@ dependencies = [
  "addr2line",
  "cc",
  "cfg-if",
- "libc",
+ "libc 0.2.155",
  "miniz_oxide",
  "object",
  "rustc-demangle",
@@ -102,7 +102,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "91e195e091a93c46f7102ec7818a2aa394e1e1771c3ab4825963fa03e45afb8f"
 dependencies = [
  "core-foundation-sys",
- "libc",
+ "libc 0.2.155",
 ]
 
 [[package]]
@@ -143,7 +143,7 @@ version = "0.3.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "534c5cf6194dfab3db3242765c03bbe257cf92f22b38f6bc0c58d59108a820ba"
 dependencies = [
- "libc",
+ "libc 0.2.155",
  "windows-sys 0.52.0",
 ]
 
@@ -518,6 +518,12 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
+version = "0.1.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e32a70cf75e5846d53a673923498228bbec6a8624708a9ea5645f075d6276122"
+
+[[package]]
+name = "libc"
 version = "0.2.155"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97b3888a4aecf77e811145cadf6eef5901f4782c53886191b2f693f24761847c"
@@ -567,7 +573,7 @@ version = "0.8.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4a650543ca06a924e8b371db273b2756685faae30f8487da1b56505a8f78b0c"
 dependencies = [
- "libc",
+ "libc 0.2.155",
  "wasi",
  "windows-sys 0.48.0",
 ]
@@ -578,7 +584,7 @@ version = "0.2.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a8614eb2c83d59d1c8cc974dd3f920198647674a0a035e1af1fa58707e317466"
 dependencies = [
- "libc",
+ "libc 0.2.155",
  "log",
  "openssl",
  "openssl-probe",
@@ -623,7 +629,7 @@ dependencies = [
  "bitflags 2.5.0",
  "cfg-if",
  "foreign-types",
- "libc",
+ "libc 0.2.155",
  "once_cell",
  "openssl-macros",
  "openssl-sys",
@@ -653,7 +659,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c597637d56fbc83893a35eb0dd04b2b8e7a50c91e64e9493e398b5df4fb45fa2"
 dependencies = [
  "cc",
- "libc",
+ "libc 0.2.155",
  "pkg-config",
  "vcpkg",
 ]
@@ -773,7 +779,7 @@ name = "rust-ztm"
 version = "0.1.0"
 dependencies = [
  "cmake",
- "libc",
+ "libc 0.1.12",
  "reqwest",
  "tokio",
  "tracing",
@@ -794,7 +800,7 @@ checksum = "70dc5ec042f7a43c4a73241207cecc9873a06d45debb38b329f8541d85c2730f"
 dependencies = [
  "bitflags 2.5.0",
  "errno",
- "libc",
+ "libc 0.2.155",
  "linux-raw-sys",
  "windows-sys 0.52.0",
 ]
@@ -839,7 +845,7 @@ dependencies = [
  "bitflags 2.5.0",
  "core-foundation",
  "core-foundation-sys",
- "libc",
+ "libc 0.2.155",
  "security-framework-sys",
 ]
 
@@ -850,7 +856,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "317936bbbd05227752583946b9e66d7ce3b489f84e11a94a510b4437fef407d7"
 dependencies = [
  "core-foundation-sys",
- "libc",
+ "libc 0.2.155",
 ]
 
 [[package]]
@@ -926,7 +932,7 @@ version = "0.5.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ce305eb0b4296696835b71df73eb912e0f1ffd2556a501fcede6e0c50349191c"
 dependencies = [
- "libc",
+ "libc 0.2.155",
  "windows-sys 0.52.0",
 ]
 
@@ -982,7 +988,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a75fb188eb626b924683e3b95e3a48e63551fcfb51949de2f06a9d91dbee93c9"
 dependencies = [
  "core-foundation-sys",
- "libc",
+ "libc 0.2.155",
 ]
 
 [[package]]
@@ -1025,7 +1031,7 @@ checksum = "ba4f4a02a7a80d6f274636f0aa95c7e383b912d41fe721a31f29e29698585a4a"
 dependencies = [
  "backtrace",
  "bytes",
- "libc",
+ "libc 0.2.155",
  "mio",
  "pin-project-lite",
  "socket2",

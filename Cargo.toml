@@ -7,7 +7,7 @@ edition = "2021"
 cmake = "0.1.50"
 
 [dependencies]
-libc = "0.2.155"
+libc = "0.1.0"
 reqwest = "0.12.4"
 tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
