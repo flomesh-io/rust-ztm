@@ -1,3 +1,4 @@
 [submodule "libs/ztm"]
 	path = libs/ztm
 	url = https://github.com/flomesh-io/ztm.git
+    ignore = dirty
