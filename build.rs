@@ -1,6 +1,24 @@
 use cmake::Config;
-
+fn build_agent_ui() {
+    let ui = std::path::Path::new("libs/ztm/agent/gui");
+    if cfg!(feature = "agent-ui") {
+        if !ui.exists() {
+            // run npm run build in the libs/ztm/gui
+            let _ = std::process::Command::new("npm")
+                .current_dir("libs/ztm/gui")
+                .arg("run")
+                .arg("build")
+                .output()
+                .expect("failed to run npm run build in ztm/gui");
+        }
+    } else {
+        if ui.exists() {
+            std::fs::remove_dir_all(ui).expect("failed to remove agent/gui");
+        }
+    }
+}
 fn main() {
+    build_agent_ui();
 
     // run npm install in the libs/ztm
     // TODO expect didn't report error when npm install failed, try npm-rs in the future
@@ -8,9 +26,11 @@ fn main() {
         .current_dir("libs/ztm/pipy")
         .arg("install")
         .output()
-        .expect("failed to execute process");
+        .expect("failed to run npm install in ztm/pipy");
 
     let mut config = Config::new("libs/ztm/pipy");
+    // clean previous build content
+
     // set to use clang/clang++ to compile
     config.define("CMAKE_C_COMPILER", "clang");
     config.define("CMAKE_CXX_COMPILER", "clang++");
