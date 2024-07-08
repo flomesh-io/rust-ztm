@@ -69,17 +69,18 @@ mod tests {
 
         let resp = reqwest::get(format!("http://127.0.0.1:{}/api/version", port))
             .await
-            .unwrap();
+            .expect("ztm agent didn't start");
         tracing::debug!("resp: {:?}", resp);
         assert!(resp.status().is_success());
         tracing::info!("ztm agent start success");
 
         exit_ztm();
-        let resp = reqwest::get(format!("http://127.0.0.1:{}/api/version", port))
+        let err = reqwest::get(format!("http://127.0.0.1:{}/api/version", port))
             .await
-            .unwrap();
-        tracing::debug!("resp: {:?}", resp);
-        assert!(resp.status().as_u16() == 502); // 502
+            .expect_err("ztm agent didn't exit");
+
+        tracing::debug!("err: {:?}", err);
+        assert!(err.is_connect()); // Port closed, connection should be refused.
         tracing::info!("ztm agent exit success");
     }
 
