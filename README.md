@@ -15,6 +15,7 @@ Follow the steps below to build rust-ztm
 ```shell
 git clone https://github.com/flomesh-io/rust-ztm.git
 git submodule update --init --recursive
+cd rust-ztm
 cargo build
 ```
 
